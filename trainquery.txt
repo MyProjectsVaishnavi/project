@@ -1,0 +1,75 @@
+drop table passenger_details;
+drop table booking_details;
+drop table train_schedule;
+drop table booked_tickets;
+
+create table home_page(
+    from        	varchar2(20),
+    destination 	varchar2(20),
+    berth       	varchar2(10),
+    date_journey        date
+);
+
+create 
+table train_schedule(
+    train_no        varchar2(20),
+    train_name      varchar2(20),
+    depart          varchar2(20),
+    arrive          varchar2(20),
+    train_fare      varchar2(10),
+    days_of_run     varchar2(20),
+    Quota           varchar2(20),
+    availbility     varchar2(10),
+    contraint       train_schedule_train_no_pk primary key(train_name)
+
+);
+
+create table booking_details(
+    train_name		   varchar2(20),
+    fromcity               varchar2(20),
+    tocity_state           varchar2(20),
+    no_of_seats     	   int(100),
+    adult	           varchar2(20),
+    children	           varchar2(20),
+    senior_citizen_male    varchar2(20),
+    senior_citizen_female  varchar2(20),
+    berth           	   varchar2(20),
+    date_of_journey 	   date,
+    ticket_fare     	   float(1000)
+    constraint      passenger_username_pk    	 foreign key(train_name)   references passenger_details(train_name)
+);
+
+create table passenger_details(
+    name                   varchar2(20),
+    gender                 varchar2(20),
+    age                    number(2),
+    adhaar_no              varchar2(20),
+    phn_no                 varchar2(20),
+    email_id               varchar2(20),
+    irctc_acc		   varchar2(10),
+    constraint      passenger_username_pk    	 primary key(name)
+);
+
+create table payment_details(
+   no_of_tickets     varchar2(10),
+   train_fare	     varchar2(10),
+   tot_amt	     varchar2(10)
+);
+
+insert into train_schedule value ('C2001','Chennai Express','chennai','coimbatore',',2017-09-10,'coimbatore junction','chennai central');
+
+insert into train_schedule values('PK102','Palaghat Express','palaghat','chennai',2017-10-07,'kulumanali','mambalam');
+
+insert into train_schedule values('CZ103','Kanyakumari Express','kanyakumari','coimbatore', 2017-08-11,'coimabtore north','kanyakumari west');
+
+insert into train_schedule values('PH104','Superfast Express','trichy','erode', 2017-10-11,'Trichy central','Erode junction');
+
+insert into train_schedule values('LZ105','Intercity','madurai','coimbatore',2017-10-8, 'madurai central','coimbatore north');
+
+insert into train_schedule values('AS107','Kovai Express','coimbatore','nammakal', 2017-09-18,'coimbatore central','namakal junction');
+
+insert into train_schedule values('YZ108','Nelai Express','bangalore','Coimbatore', 2017-09-19,'bangalore west','coimbatore east');
+
+
+
+ alter table booked_tickets modify no_of_seats to seats_available;
